@@ -3,7 +3,17 @@
 namespace PasswordValidation.UnitTest
 {
     [TestClass]
-    class PasswordValidatorTests
+    public class PasswordValidatorTests
     {
+        [TestMethod]
+        public void IsValid_PasswordLongerThan6Char_ReturnsTrue()
+        {
+            var passwordValidator = new PasswordValidator();
+
+            var actual = passwordValidator.IsValid("1234567");
+
+            Assert.IsTrue(actual);
+        }
+
     }
 }
