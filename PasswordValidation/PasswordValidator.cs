@@ -9,7 +9,7 @@ namespace PasswordValidation
 
         public bool IsValid(string password)
         {
-            if(password.Length < 7 && password.Length > 50)
+            if(password.Length < 7 || password.Length >= 50)
             {
                 return false;
             }

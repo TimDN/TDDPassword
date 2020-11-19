@@ -67,5 +67,16 @@ namespace PasswordValidation.UnitTest
 
             Assert.IsFalse(actual);
         }
+
+        [TestMethod]
+        public void IsValid_PasswordIsLongerThan50Character_ReturnsFalse()
+        {
+            var passwordValidator = new PasswordValidator();
+            var password = string.Join("", Enumerable.Repeat("1234567aA!", 5));
+
+            var actual = passwordValidator.IsValid(password);
+
+            Assert.IsFalse(actual);
+        }
     }
 }
