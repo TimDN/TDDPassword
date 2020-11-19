@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace PasswordValidation.UnitTest
 {
@@ -53,6 +54,16 @@ namespace PasswordValidation.UnitTest
             var passwordValidator = new PasswordValidator();
 
             var actual = passwordValidator.IsValid("aaaaAAAA");
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void IsValid_PasswordMissingSpecialCharacter_ReturnsFalse()
+        {
+            var passwordValidator = new PasswordValidator();
+
+            var actual = passwordValidator.IsValid("12345678aA");
 
             Assert.IsFalse(actual);
         }
