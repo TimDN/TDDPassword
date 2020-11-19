@@ -19,6 +19,10 @@ namespace PasswordValidation
             {
                 return false;
             }
+            if (!password.Any(char.IsDigit))
+            {
+                return false;
+            }
             return true;
         }
     }

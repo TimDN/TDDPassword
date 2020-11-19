@@ -46,5 +46,15 @@ namespace PasswordValidation.UnitTest
 
             Assert.IsFalse(actual);
         }
+
+        [TestMethod]
+        public void IsValid_PasswordMissingNumber_ReturnsFalse()
+        {
+            var passwordValidator = new PasswordValidator();
+
+            var actual = passwordValidator.IsValid("aaaaAAAA");
+
+            Assert.IsFalse(actual);
+        }
     }
 }
