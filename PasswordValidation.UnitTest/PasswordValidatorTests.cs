@@ -15,5 +15,15 @@ namespace PasswordValidation.UnitTest
             Assert.IsTrue(actual);
         }
 
+        [TestMethod]
+        public void IsValid_PasswordShorterThan7Char_ReturnsFalse()
+        {
+            var passwordValidator = new PasswordValidator();
+
+            var actual = passwordValidator.IsValid("123456");
+
+            Assert.IsFalse(actual);
+        }
+
     }
 }

@@ -6,6 +6,10 @@ namespace PasswordValidation
     {
         public bool IsValid(string password)
         {
+            if(password.Length < 7)
+            {
+                return false;
+            }
             return true;
         }
     }
