@@ -13,29 +13,31 @@ namespace PasswordValidation
         private readonly char[] _specialCharacter = { '!', '.', '#', '%', ':' };
         private readonly int _maxLength;
 
-        public bool IsValid(string password)
+        private bool PasswordContainsRequiredCharacters(string password)
         {
-            if(password.Length < 7 || password.Length >= _maxLength)
-            {
-                return false;
-            }
-            if (!password.Any(char.IsUpper))
-            {
-                return false;
-            }
-            if (!password.Any(char.IsLower))
-            {
-                return false;
-            }
-            if (!password.Any(char.IsDigit))
-            {
-                return false;
-            }
-            if(!password.Any(e => _specialCharacter.Contains(e)))
+            if (!password.Any(char.IsUpper) ||
+                !password.Any(char.IsLower) ||
+                !password.Any(char.IsDigit) ||
+                !password.Any(e => _specialCharacter.Contains(e)))
             {
                 return false;
             }
             return true;
+        }
+
+        private bool PasswordIsInRange(string password, int lower, int upper)
+        {
+            return password.Length > lower && password.Length < upper;
+        }
+
+        public bool IsValid(string password)
+        {
+            if(PasswordIsInRange(password, 7, _maxLength) &&
+               PasswordContainsRequiredCharacters(password))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
