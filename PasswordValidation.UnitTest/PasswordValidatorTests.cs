@@ -5,12 +5,14 @@ namespace PasswordValidation.UnitTest
     [TestClass]
     public class PasswordValidatorTests
     {
-        [TestMethod]
-        public void IsValid_PasswordLongerThan6Char_ReturnsTrue()
+        [DataRow("1234567Ab!")]
+        [DataRow("SolarPower123!")]
+        [DataTestMethod]
+        public void IsValid_UsingAValidPassword_ReturnsTrue(string password)
         {
             var passwordValidator = new PasswordValidator();
 
-            var actual = passwordValidator.IsValid("1234567");
+            var actual = passwordValidator.IsValid(password);
 
             Assert.IsTrue(actual);
         }
@@ -25,5 +27,14 @@ namespace PasswordValidation.UnitTest
             Assert.IsFalse(actual);
         }
 
+        [TestMethod]
+        public void IsValid_PasswordMissingUpperCaseCharacter_ReturnsFalse()
+        {
+            var passwordValidator = new PasswordValidator();
+
+            var actual = passwordValidator.IsValid("1234567");
+
+            Assert.IsFalse(actual);
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace PasswordValidation
 {
@@ -7,6 +8,10 @@ namespace PasswordValidation
         public bool IsValid(string password)
         {
             if(password.Length < 7)
+            {
+                return false;
+            }
+            if (!password.Any(char.IsUpper))
             {
                 return false;
             }
