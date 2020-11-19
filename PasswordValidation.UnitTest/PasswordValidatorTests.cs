@@ -36,5 +36,15 @@ namespace PasswordValidation.UnitTest
 
             Assert.IsFalse(actual);
         }
+
+        [TestMethod]
+        public void IsValid_PasswordMissingLowerCaseCharacter_ReturnsFalse()
+        {
+            var passwordValidator = new PasswordValidator();
+
+            var actual = passwordValidator.IsValid("1234567A");
+
+            Assert.IsFalse(actual);
+        }
     }
 }
